@@ -279,10 +279,10 @@ body {
   font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
   line-height: 1.5;
   color: #333;
-  /*background-color: #fff;*/
+  /* background-color: #fff; */
   min-height: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-  url('https://i.loli.net/2021/04/07/fmySsctbETw2a7X.jpg') no-repeat 0% 0%/ cover
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+              url('https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/EvliRTjU8AANyUs.jfif') no-repeat 0% 0%/ cover
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -726,7 +726,7 @@ body, button, input, select, textarea {
 
 body {
   overflow-y: hidden;
-  background: #eaeaea
+  /* background: #eaeaea */
 }
 
 #container, body, html {
@@ -777,7 +777,7 @@ body {
 
 .left-col {
   /* background:#fff; */
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://i.loli.net/2021/04/07/78p2YVbwQDCsz9U.jpg') no-repeat 0% 20%/ cover;
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
   width: 300px;
   position: fixed;
   opacity: 1;
@@ -1994,7 +1994,8 @@ pre .css ~ * .id, pre .id {
   border: 1px solid #ddd;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  background: #fff;
+  /* background: #fff; */
+  background: rgba(255,255,255,0.9);
   transition: all .2s ease-in
 }
 
