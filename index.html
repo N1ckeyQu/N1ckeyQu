@@ -153,6 +153,184 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-消息队列的高可用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/02/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8/">消息队列的高可用</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/02/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-05-02T04:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-02</time>
+</a>
+        
+        <!-- 添加代码 访问统计 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1394952100&auto=0&height=66"></iframe>
+
+<p>所谓高可用，是指系统在正常工作时间内提供正常服务的能力。当业务量膨胀时，请求数量也不断增长，一台消息中间件服务器会达到硬件（CPU、硬盘、内存）的极限，一台满足不了业务需求，那就上消息中间件集群来实现高可用</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">中间件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/02/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-消息的分发策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/02/%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5/">消息的分发策略</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/02/%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5/" class="archive-article-date">
+  	<time datetime="2021-05-02T03:50:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-02</time>
+</a>
+        
+        <!-- 添加代码 访问统计 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=30394746&auto=0&height=66"></iframe>
+
+<p>MQ有以下几个核心：</p>
+<ul>
+<li>生产者</li>
+<li>存储消息</li>
+<li>消费者</li>
+</ul>
+<p>本文我们重点关注MQ是如何将消息传递给消费者的，一般而言数据的传递无非就是两种形式，推和拉，比如git。假设此时APP端传来了一个创建订单的请求，MQ会对消息进行一个分发，这当中不仅仅是只有推和拉那么简单，这涉及到了MQ的分发策略</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">中间件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/02/%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-基于消息中间件的分布式系统架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -194,6 +372,14 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">中间件</a>
         		</li>
       		
 		</ul>
@@ -279,6 +465,14 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">中间件</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -360,6 +554,14 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">中间件</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -398,19 +600,19 @@
 
 
   
-    <article id="post-我想和你一起" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-浅谈Java内存模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/01/%E6%88%91%E6%83%B3%E5%92%8C%E4%BD%A0%E4%B8%80%E8%B5%B7/">浅谈Java内存模型</a>
+      <a class="article-title" href="/2021/05/01/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">浅谈Java内存模型</a>
     </h1>
   
 
         
-        <a href="/2021/05/01/%E6%88%91%E6%83%B3%E5%92%8C%E4%BD%A0%E4%B8%80%E8%B5%B7/" class="archive-article-date">
+        <a href="/2021/05/01/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
   	<time datetime="2021-05-01T08:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-01</time>
 </a>
         
@@ -440,6 +642,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -448,7 +654,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/01/%E6%88%91%E6%83%B3%E5%92%8C%E4%BD%A0%E4%B8%80%E8%B5%B7/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/01/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
@@ -502,7 +708,7 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=109491&auto=0&height=66"></iframe>
 
-<p>一转眼已经从4月初到了4月底，离开上海也有近一个月了。那天下着小雨，我在公司楼下等着滴滴，感觉自己像是一条丧家野犬，上海这么大却没有我的容身之处，心情很灰暗，身上的积蓄也所剩无几了</p>
+<p>一转眼已经从4月初到了4月底，离开上海也有近一个月了。离职第二天把房间退掉之后，我把三大包行李寄回了家，在郑州倒了一次车，傍晚到家之后，老妈居然去新疆了。。这么多年家中只有我一个人的情况，还是第一次遇到</p>
         
       
 
@@ -527,6 +733,160 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/04/25/%E4%B8%8D%E6%87%82%E7%94%9F%E6%B4%BB%E7%9A%84%E5%B0%8F%E5%AD%A9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-人生中第一场葬礼" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/09/%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9C%BA%E8%91%AC%E7%A4%BC/">人生中第一场葬礼</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/09/%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9C%BA%E8%91%AC%E7%A4%BC/" class="archive-article-date">
+  	<time datetime="2020-12-09T06:04:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
+</a>
+        
+        <!-- 添加代码 访问统计 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1453162392&auto=0&height=66"></iframe>
+
+<p>这周二的晚上我从上海坐高铁回到老家，朋友D的父亲去世了，这是我人生中的第一场葬礼</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/09/%E4%BA%BA%E7%94%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%9C%BA%E8%91%AC%E7%A4%BC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-老歌和生活" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/01/%E8%80%81%E6%AD%8C%E5%92%8C%E7%94%9F%E6%B4%BB/">老歌和生活</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/01/%E8%80%81%E6%AD%8C%E5%92%8C%E7%94%9F%E6%B4%BB/" class="archive-article-date">
+  	<time datetime="2020-12-01T06:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-01</time>
+</a>
+        
+        <!-- 添加代码 访问统计 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        沪上的短暂时光
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/01/%E8%80%81%E6%AD%8C%E5%92%8C%E7%94%9F%E6%B4%BB/">展开全文 >></a>
         </p>
       
 
@@ -654,6 +1014,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
               </li>
             
             <div class="clearfix"></div>
