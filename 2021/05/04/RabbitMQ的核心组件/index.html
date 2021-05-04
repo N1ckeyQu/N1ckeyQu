@@ -6,24 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://cookiez.cn">
-  <title>浅谈Java内存模型 | 曲颀的Blog</title>
+  <title>RabbitMQ的核心组件 | 曲颀的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java内存模型是什么？为什么Java官方要引入Java内存模型？">
+  <meta name="description" content="RabbitMQ的本质就是消息队列，其内部结构包括交换机、路由key、bindings、队列等组件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈Java内存模型">
-<meta property="og:url" content="http://cookiez.cn/2021/05/01/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="RabbitMQ的核心组件">
+<meta property="og:url" content="http://cookiez.cn/2021/05/04/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="曲颀的Blog">
-<meta property="og:description" content="Java内存模型是什么？为什么Java官方要引入Java内存模型？">
+<meta property="og:description" content="RabbitMQ的本质就是消息队列，其内部结构包括交换机、路由key、bindings、队列等组件">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/v2-42d8f894f17ccf13252d8d8d6285f86b_r.jpg">
-<meta property="article:published_time" content="2021-05-01T08:43:10.000Z">
-<meta property="article:modified_time" content="2021-05-04T07:23:29.487Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/python-three.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/python-four.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/python-five.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210504174021.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210504174542.png">
+<meta property="article:published_time" content="2021-05-04T06:45:05.000Z">
+<meta property="article:modified_time" content="2021-05-04T10:59:55.999Z">
 <meta property="article:author" content="N1ckeyQu">
 <meta property="article:tag" content="技术">
-<meta property="article:tag" content="Java基础">
+<meta property="article:tag" content="RabbitMQ">
+<meta property="article:tag" content="中间件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6.png">
   
     <link rel="alternative" href="/atom.xml" title="曲颀的Blog" type="application/atom+xml">
   
@@ -160,20 +165,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-浅谈Java内存模型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-RabbitMQ的核心组件" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      浅谈Java内存模型
+      RabbitMQ的核心组件
     </h1>
   
 
         
-        <a href="/2021/05/01/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-05-01T08:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-01</time>
+        <a href="/2021/05/04/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2021-05-04T06:45:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-04</time>
 </a>
         
         <!-- 添加代码 访问统计 -->
@@ -187,32 +192,59 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-    <div id="aplayer-nmzHPXZb" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1490390437" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
+    <div id="aplayer-swJDTYvT" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1405853776" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
     ></div>
 
 <blockquote>
-<p>Java内存模型是什么？为什么Java官方要引入Java内存模型？</p>
+<p>RabbitMQ的本质就是消息队列，其内部结构包括交换机、路由key、bindings、队列等组件</p>
 </blockquote>
 <span id="more"></span>
 
-<h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p>我们平时所使用的硬件和操作系统可能是不同的，这导致了相同的代码在不同的环境上执行会产生不同的结果。Java官方为了屏蔽掉硬件不同和os不同所带来的访问内存差异，引入了Java内存模型——JMM，从而实现Java程序在全平台一致的并发效果<br><img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png"></p>
-<center style="font-size: 12px">Java内存模型</center>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6.png"/>
 
-<p>Java内存模型规定，所有的成员变量（实例变量和静态变量）都保存在主内存中，但线程不能直接对主内存中的变量进行操作</p>
-<p>每个线程都有自己的工作内存，如果线程需要操作共享数据，需要先将数据从主内存读取并copy到自己的工作内存中，然后再对工作内存中的副本进行操作</p>
-<p>不同线程之间是不可见的，即线程A无法访问线程B的工作内存。如果线程之间需要进行变量值的传递，需要经过主内存来完成</p>
-<p>注意：Java内存模型和JVM内存结构是两个截然不同的概念，如果我们一定要去类比的话，主内存对应堆内存中的对象实例数据部分，线程工作内存对应虚拟机栈中的部分区域</p>
-<h2 id="由JMM引申出的八种操作"><a href="#由JMM引申出的八种操作" class="headerlink" title="由JMM引申出的八种操作"></a>由JMM引申出的八种操作</h2><p><img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/v2-42d8f894f17ccf13252d8d8d6285f86b_r.jpg"></p>
-<h2 id="JMM定义了什么"><a href="#JMM定义了什么" class="headerlink" title="JMM定义了什么"></a>JMM定义了什么</h2><p>开篇我们提过，JMM的引入目的就是为了屏蔽掉硬件和OS不同所带来的内存访问差异，从而使得Java程序在全平台都拥有相同的并发性能。Java并发编程的基础：原子性、可见性、有序性，这三个特点，也是JMM的核心特征</p>
-<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>一个操作时不可分割的、不会被打断的。一个线程在执行时不会被其它线程打断</p>
-<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>当一个线程修改了共享变量的值后，其它线程立刻知道该共享变量被修改了，这就是可见性。Java为我们提供了volatile关键字来实现可见性，被volatile修饰的变量被修改后，该变量会被立刻刷新到主内存中，当其它线程需要修改该变量时，必须从主内存中获取该变量最新的值。普通变量是不能保证每次都走上述流程的</p>
-<p>当然，除了volatile之外，final和synchronized也可以实现可见性</p>
-<p>final关键字修饰的变量，一旦初始化完成，且没有对象逸出，那么对于其它线程就是可见的</p>
-<p>synchronized修饰的代码，执行完后，进入unlock前，必须要将共享变量同步到主内存中</p>
-<h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>synchronized和volatile都可以实现有序性</p>
-<p>synchronized保证有序性的原理是：一个线程lock后，必须进行unlock操作；然后其它线程才可以lock，这就保证了synchronized修饰的代码在多线程环境下是串行执行的</p>
-<p>volatile则是通过内存屏障来禁止指令重排序，从而保证有序性</p>
+<ul>
+<li><p><strong>Server</strong>：又称为broker，接受客户端的连接，实现AMQP实体服务。安装rabbitmq-server。我们可以将其理解为RabbitMQ集群中的一个节点</p>
+</li>
+<li><p><strong>Connection</strong>：连接，用于应用程序和broker的网络连接，其本质是TCP/IP的三次握手和四次挥手</p>
+</li>
+<li><p><strong>Channel</strong>：网络信道，几乎所有RabbitMQ的操作都在Channel中进行，Channel是进行消息读写的通道，客户端可以建立多个Channel，每个Channel代表一个会话任务</p>
+</li>
+<li><p><strong>Message</strong>：应用程序之间所传递的消息，由Properties和Body组成，Properties可以对消息进行修饰，比如消息的优先级、延迟等高级特性，Body则是消息体的内容</p>
+</li>
+<li><p><strong>Virtual Host</strong>：虚拟地址，用于进行逻辑隔离，<strong>一个虚拟主机里可以有若干个Exchange和Queue，同一个虚拟主机里不能有相同名字的Exchange</strong></p>
+<p>它就好比我们的硬盘分区，之所以进行硬盘分区的原因就是为了隔离，方便我们管理。实际工作中，通常是一个业务模块一个虚拟地址，比如客流模块就是/passengerFlow，车流模块就是/carFlow，方便我们查看</p>
+</li>
+<li><p><strong>Exchange</strong>：交换机，接受消息，根据路由key发送消息到绑定的队列</p>
+<p><strong>注意：交换机本身不具备消息存储的能力</strong></p>
+</li>
+<li><p>Bindings：Exchange和Queue之间的虚拟连接，binding中可以包含多个key</p>
+</li>
+<li><p>Routing key：是一个路由规则，虚拟机可以用它来确定如何路由一个特定消息</p>
+</li>
+<li><p>Queue：队列，也叫Messge Queue，消息队列，它保存消息并将消息转发给消费者</p>
+</li>
+</ul>
+<blockquote>
+<p>面试题：可以存在没有交换机的队列吗？</p>
+</blockquote>
+<p>不可能。如果我们没有给队列指定交换机，那么该队列将会和默认交换机绑定。在RabbitMQ中，消息一定是通过交换机传递给队列的，这个和底层语言的选择有关，RabbitMQ由Erlang开发，而Erlang是专门开发交换机的语言</p>
+<h2 id="交换机的几种类型"><a href="#交换机的几种类型" class="headerlink" title="交换机的几种类型"></a>交换机的几种类型</h2><ul>
+<li><p>fanout：发布订阅模式。当交换机接收到消息并发布，交换机绑定了多少个队列，就有多少个队列接受到该消息</p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/python-three.png"/></li>
+<li><p>direct：路由模式。当交换机绑定队列时，可设置路由key。当交换机发布消息的时候，选择想要将消息发送给哪个路由key，该路由器对应的队列就会收到消息</p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/python-four.png"/></li>
+<li><p>topic：主题模式。其实就是路由模式的进阶版，我们在设置路由key的时候，还可以加上通配符，比如：*.order.#</p>
+<p>通配符有两种，*和#。*的意思是有且只能有一级，com.order.lala这种是对的，cn.com.order.lala这种就不对了，因为order前面只能有一级</p>
+<p>#的意思是可以有一级、多级，也可以没有。比如com.order，或者com.order.lala.lala，都可以</p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/python-five.png"/></li>
+<li><p>header：参数模式。</p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210504174021.png" style="zoom: 40%"/></li>
+</ul>
+<p>当交换机和队列绑定时，可以绑定一些参数，当header类型的交换机发送消息时，选择我们想要发送的参数，比如我们选择x=1和y=2</p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210504174542.png" style="zoom:40%;" />
+
+<p>这条消息就会发送给queue1和queue2</p>
 
       
 
@@ -230,7 +262,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">中间件</a>
         		</li>
       		
 		</ul>
@@ -286,7 +322,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://cookiez.cn/2021/05/01/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://cookiez.cn/2021/05/04/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -300,18 +336,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/05/01/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          中间件是什么
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/25/%E4%B8%8D%E6%87%82%E7%94%9F%E6%B4%BB%E7%9A%84%E5%B0%8F%E5%AD%A9/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">不懂生活的小孩</div>
+    <a href="/2021/05/02/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">消息队列的高可用</div>
       <i class="icon-circle-right"></i>
     </a>
   
