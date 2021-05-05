@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://cookiez.cn">
-  <title>基于消息中间件的分布式系统架构 | 曲颀的Blog</title>
+  <title>RabbitMQ的使用场景 | 曲颀的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分布式架构中，一个系统由若干个子系统构成，因此系统与系统之间的通讯就显得很重要了">
+  <meta name="description" content="bl商业地产管理系统是专门面向bl集团的，一个集团再大又能有多少人呢？其实在我看来很多架构都是多余的，但这也是没办法的事情，老旧的技术适应不了当今的市场，技术的迭代速度太快 当然，客户也很精明，这个系统后续能不能进行升级？一下子把路堵死了。只有把这些数据服务提供出去，作为一个能力、一种资产，客户才会去接受这个东西，这就是当今的市场">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于消息中间件的分布式系统架构">
-<meta property="og:url" content="http://cookiez.cn/2021/05/02/%E5%9F%BA%E4%BA%8E%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:title" content="RabbitMQ的使用场景">
+<meta property="og:url" content="http://cookiez.cn/2021/05/05/RabbitMQ%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/index.html">
 <meta property="og:site_name" content="曲颀的Blog">
-<meta property="og:description" content="分布式架构中，一个系统由若干个子系统构成，因此系统与系统之间的通讯就显得很重要了">
+<meta property="og:description" content="bl商业地产管理系统是专门面向bl集团的，一个集团再大又能有多少人呢？其实在我看来很多架构都是多余的，但这也是没办法的事情，老旧的技术适应不了当今的市场，技术的迭代速度太快 当然，客户也很精明，这个系统后续能不能进行升级？一下子把路堵死了。只有把这些数据服务提供出去，作为一个能力、一种资产，客户才会去接受这个东西，这就是当今的市场">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.png">
-<meta property="article:published_time" content="2021-05-02T03:21:52.000Z">
-<meta property="article:modified_time" content="2021-05-04T07:23:36.756Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E8%AE%A2%E5%8D%95%E6%9C%8D%E5%8A%A1.png">
+<meta property="article:published_time" content="2021-05-05T07:07:22.000Z">
+<meta property="article:modified_time" content="2021-05-05T12:31:55.159Z">
 <meta property="article:author" content="N1ckeyQu">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="RabbitMQ">
 <meta property="article:tag" content="中间件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E8%AE%A2%E5%8D%95%E6%9C%8D%E5%8A%A1.png">
   
     <link rel="alternative" href="/atom.xml" title="曲颀的Blog" type="application/atom+xml">
   
@@ -160,20 +160,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基于消息中间件的分布式系统架构" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-RabbitMQ的使用场景" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      基于消息中间件的分布式系统架构
+      RabbitMQ的使用场景
     </h1>
   
 
         
-        <a href="/2021/05/02/%E5%9F%BA%E4%BA%8E%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-05-02T03:21:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-02</time>
+        <a href="/2021/05/05/RabbitMQ%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="archive-article-date">
+  	<time datetime="2021-05-05T07:07:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-05</time>
 </a>
         
         <!-- 添加代码 访问统计 -->
@@ -187,100 +187,53 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-    <div id="aplayer-pLLzCPjk" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="29572048" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
+    <div id="aplayer-DxNbkYRv" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1472044113" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
     ></div>
 
 <blockquote>
-<p>分布式架构中，一个系统由若干个子系统构成，因此系统与系统之间的通讯就显得很重要了</p>
+<p>bl商业地产管理系统是专门面向bl集团的，一个集团再大又能有多少人呢？其实在我看来很多架构都是多余的，但这也是没办法的事情，老旧的技术适应不了当今的市场，技术的迭代速度太快</p>
+<p>当然，客户也很精明，这个系统后续能不能进行升级？一下子把路堵死了。只有把这些数据服务提供出去，作为一个能力、一种资产，客户才会去接受这个东西，这就是当今的市场</p>
 </blockquote>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.png"/>
+<h2 id="为什么要使用RabbitMQ"><a href="#为什么要使用RabbitMQ" class="headerlink" title="为什么要使用RabbitMQ"></a>为什么要使用RabbitMQ</h2><p>刚进入公司的时候，公司项目的架构还比较单一，采用的是单体式架构。单体式架构是把所有的业务都堆积在一个项目里面，但是随着我们公司业务的不断发展和推进，CTO的目标是把项目架构进行拆分，变成分布式架构</p>
+<p>项目架构的拆分就涉及到一个问题，比如员工出差申请报销，申请报销后需要给员工发送短信和邮件，三者需要进行沟通和协同，因此我们公司采用了消息队列</p>
+<p>常见的消息队列有以下几种</p>
+<ul>
+<li><p>ActiveMQ</p>
+<p>老牌的消息中间件，遵循JMS规范、AMQP协议，基于Java开发，虽然跨平台是个好处，但我们更倾向于高性能</p>
+<p>相对于业界其它MQ而言，它的复杂程度较高</p>
+</li>
+<li><p>RabbitMQ</p>
+<p>跟Spring师出同门，因此Spring对它的支持很完善。它支持的协议、消息的分发策略、消息持久化等等也很完善</p>
+</li>
+<li><p>Kafka</p>
+<p>它的吞吐量太高了，因为它底层是基于TCP/IP这种二进制协议开发的，我们用不到这么高的性能</p>
+</li>
+<li><p>RocketMQ</p>
+<p>RocketMQ挺牛逼的，双十一都能抗住，它由阿里和滴滴联合开发，但我担心的是，如果他们后续不对RocketMQ进行维护了怎么办？就比如Eureka和Ribbon，它们都已经停止维护了，但是据我的了解，目前仍然有不少企业依然在使用它们，我们又要保证现有服务的可用，同时又要进行架构的升级和转型，这就很难搞</p>
+</li>
+</ul>
+<p>经过一番权衡，最终我们选择了使用RabbitMQ，我个人使用RabbitMQ的感受，最核心的一点就是它是异步的，因为它起了多个线程，是一个异步分发消息的机制，程序处理数据的能力变得更加高效和稳健，达到了我们进行流量削峰的目的</p>
+<h2 id="RabbitMQ的使用场景"><a href="#RabbitMQ的使用场景" class="headerlink" title="RabbitMQ的使用场景"></a>RabbitMQ的使用场景</h2><h3 id="解耦、异步、削峰"><a href="#解耦、异步、削峰" class="headerlink" title="解耦、异步、削峰"></a>解耦、异步、削峰</h3><p>之前我们聊到消息中间件存在的意义，它对于我们的分布式架构天然进行了解耦，它就是为此而生的。那异步又是怎么回事呢？</p>
+<h4 id="串行执行"><a href="#串行执行" class="headerlink" title="串行执行"></a>串行执行</h4><p>假设我们的系统中存在订单服务，用户下订单后，我们不光要收费，还要通过短信和邮件的方式告知用户您的订单已经下好了</p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E8%AE%A2%E5%8D%95%E6%9C%8D%E5%8A%A1.png" style="zoom:50%;" />
 
-<center style="font-size: 12px">基于消息中间件的分布式架构</center>
-
-<p>从上图中我们可以看到，消息中间件最根本的功能就是通讯，实现通信就需要遵守通信协议。<strong>通信协议有很多，比如TCP/IP协议、HTTP协议、AMQP、OpenMessage协议等，我们应该选择哪种呢？</strong></p>
-<p>其次，消息中间件需要具备高可用（持久化、集群），比如消息中间件刚收到消息后就宕机了，等待服务器恢复正常后，消息中间件是否还能够进行正常的消息分发呢？</p>
-<p>然后，消息中间件还需要能给将消息分发给消费者，这就涉及到了分发策略的选择，是发布订阅模式？还是公平模式？还是轮询模式？</p>
-<p>并且，消息中间件需要做到跨平台，不管我们的业务模块是用什么语言编写的，消息中间件都要能够支持</p>
-<h2 id="消息中间件所应该具备的能力"><a href="#消息中间件所应该具备的能力" class="headerlink" title="消息中间件所应该具备的能力"></a>消息中间件所应该具备的能力</h2><ul>
-<li>跨系统数据传递</li>
-<li>高并发情况的流量削峰</li>
-<li>数据的分发和异步处理</li>
-<li>大数据分析和传递</li>
-<li>分布式事务</li>
-</ul>
-<p>比如我们有一个数据要进行迁移或者请求并发过多的时候，假设我们现在有10w的并发请求下订单，我们可以在这些订单入库之前，将这批订单请求堆积到消息队列中，让它稳健可靠的入库和执行</p>
-<h2 id="常见的消息中间件"><a href="#常见的消息中间件" class="headerlink" title="常见的消息中间件"></a>常见的消息中间件</h2><ul>
-<li>ActiveMQ</li>
-<li>RabbitMQ</li>
-<li>Kafka</li>
-<li>RocketMQ</li>
-</ul>
-<h2 id="消息中间件的本质"><a href="#消息中间件的本质" class="headerlink" title="消息中间件的本质"></a>消息中间件的本质</h2><p>接收数据、存储数据、发送数据</p>
-<h2 id="消息中间件的组成部分"><a href="#消息中间件的组成部分" class="headerlink" title="消息中间件的组成部分"></a>消息中间件的组成部分</h2><ul>
-<li><p>消息的协议（TCP/IP、UDP、AMQP、MQTT、Kafka协议、OpenMessage协议等）</p>
-<p>所谓的协议是指：</p>
-<p>计算机OS和应用程序通讯时所共同遵守的约定，只有遵循共同的约定和规范，应用和底层操作系统之间才能相互交流</p>
-<h3 id="网络协议的要素"><a href="#网络协议的要素" class="headerlink" title="网络协议的要素"></a>网络协议的要素</h3><ol>
-<li>语法：数据的结构与格式，以及数据出现的顺序</li>
-<li>语义：解释数据中每个部分的含义，它规定了我们需要发出怎样的数据，以及发送完成后的动作和返回怎样的响应</li>
-<li>时序：对事件发生顺序的详细说明</li>
-</ol>
-<blockquote>
-<p>以http协议为例：</p>
-<p>语法：http规定了请求报文和响应报文的格式</p>
-<p>语义：客户端主动发起请求才称之为请求</p>
-<p>时序：一个请求对应一个响应，先有请求再有响应</p>
-</blockquote>
-<p>那为什么消息中间件的协议不直接使用http协议呢？</p>
-<blockquote>
-<ol>
-<li><p>因为http请求报文头和响应报文头是比较复杂的，包含cookie、响应码、状态码等附加功能，但是这些东西对于消息中间件来说完全没用，它只需要负责数据的接收、存储、分发，它追求的是高性能、高可用，因此消息中间件所使用的协议一定要简洁、高效</p>
+<p>如果我们选择串行执行的话，假设发短信需要100ms，发邮件需要100ms，由于串行执行是阻塞的，因此整个程序执行完毕需要200ms</p>
+<p>如果我们按照图中的异步来做，也就是非阻塞的，那么我们的程序只需要100ms就可以执行完毕，性能提升了50%</p>
+<h4 id="线程池？"><a href="#线程池？" class="headerlink" title="线程池？"></a>线程池？</h4><p>的确，线程池可以实现上述操作，通讯方面我们可以使用Socket来做，不一定非要使用MQ，但是这种做法有如下几种问题</p>
+<ul>
+<li><p>消息的可靠性（订单服务突然挂掉，消息是否会丢失？）</p>
+<p>针对这种情况，我们需要做消息的持久化，也就是消息存盘，需要NIO、BIO、AIO相关的知识</p>
 </li>
-<li><p>大部分情况下http请求都是<strong>短链接</strong>，在实际交互过程中，客户端发起请求到响应结果返回，这个过程很可能会中断，中断以后不会进行持久化，就会造成消息的丢失，这对于消息中间件来说是不可接受的。</p>
-<p>因为消息中间件所面临的场景是接收、存储、发送消息，这是一个长期的过程，中间出现问题的话，消息中间件需要对消息进行持久化等操作，保证消息的可靠</p>
+<li><p>高可用（一个线程池的能力终究是有限的，能否做集群？）</p>
+<p>不光是集群，还有线程池的调优，这也是个头疼的问题</p>
 </li>
-<li><p>ps：短链接就是用户发起请求，此时服务器故障，则请求直接丢失，并不会维持客户端和服务端的链接；长链接就是当服务器出现故障，重启之后依然可以进行数据的传递，从而维持长久的关系</p>
-</li>
-</ol>
-</blockquote>
-</li>
-<li><p>消息的持久化机制</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">ActiveMQ</th>
-<th align="center">RabbitMQ</th>
-<th align="center">Kafka</th>
-<th align="center">RocketMQ</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">文件存储</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">数据库</td>
-<td align="center">√</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>消息的分发策略</p>
-</li>
-<li><p>高可用、扩展性</p>
-</li>
-<li><p>消息的容错机制</p>
+<li><p>解耦（线程池和订单服务的代码是耦合的，如何保证Java虚拟机内存不被过多占用、以及项目的可维护性？）</p>
 </li>
 </ul>
+<p>针对上面这些问题，其实如果系统的流量比较低倒也没啥，流量一上来，问题就来了。数据服务作为一种资产，什么叫资产，资产是可以保值的。所以直接上MQ，一步到位，省的后续又要升级架构，客户难道会为我们的架构升级买单吗？不可能的</p>
 
       
 
@@ -358,7 +311,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://cookiez.cn/2021/05/02/%E5%9F%BA%E4%BA%8E%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://cookiez.cn/2021/05/05/RabbitMQ%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -372,18 +325,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/05/02/%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          消息的分发策略
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/05/01/%E6%B5%85%E8%B0%88%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%8A%80%E6%9C%AF%E5%8F%8A%E5%85%B6%E6%9E%B6%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">浅谈中间件技术及其架构</div>
+    <a href="/2021/05/04/RabbitMQ%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RabbitMQ的核心组件</div>
       <i class="icon-circle-right"></i>
     </a>
   
