@@ -150,7 +150,7 @@ template {
   font-display: swap;
 }
 html {
-  font-family: Arial, Microsoft Yahei, 'Microsoft Jhenghei', Lantinghei SC, 'lanting', PingFang SC, Seguo UI;
+  font-family: 'Microsoft Jhenghei', Lantinghei SC, 'lanting', PingFang SC, Seguo UI, Microsoft Yahei, Arial;
 }
 html::-webkit-scrollbar {
   width: 8px;
@@ -196,7 +196,7 @@ a {
   cursor: pointer;
 }
 a:hover {
-  color: #73b886;
+  color: #2d96bd;
   text-decoration: none;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
@@ -517,7 +517,7 @@ header label {
   display: none;
 }
 .pagination .page-number:hover a {
-  color: #73b886;
+  color: #000;
 }
 .dark-theme .pagination .page-number:hover a {
   color: #fff;
@@ -528,7 +528,7 @@ header label {
   content: "";
   width: 0;
   height: 1px;
-  background: #73b886;
+  background: #000;
   transition: 0.3s;
   bottom: 0px;
 }
@@ -551,7 +551,7 @@ header label {
   width: 50%;
 }
 .pagination .page-number.current {
-  color: #73b886;
+  color: #000;
 }
 .dark-theme .pagination .page-number.current {
   color: #fff;
@@ -621,7 +621,7 @@ header label {
   white-space: nowrap;
 }
 .archive-item-link:hover {
-  color: #73b886;
+  color: #2d96bd;
   background-color: transparent;
 }
 .dark-theme .archive-item-link {
@@ -683,7 +683,7 @@ header label {
 .tag-cloud-tags a:active,
 .tag-cloud-tags a:focus,
 .tag-cloud-tags a:hover {
-  color: #73b886;
+  color: #2d96bd;
   transform: scale(1.1);
 }
 .dark-theme .tag-cloud-tags a:active,
@@ -723,13 +723,13 @@ header label {
   color: #87878d !important;
 }
 .post-wrap .post-meta a {
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-wrap .post-meta a {
   color: #eee;
 }
 .post-wrap .post-meta a:hover {
-  color: #73b886;
+  color: #ef3982;
 }
 .dark-theme .post-wrap .post-meta a:hover {
   color: #fff;
@@ -749,7 +749,7 @@ header label {
 .post-content h1::before {
   content: "#";
   margin-right: 5px;
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-content h1::before {
   color: #eee;
@@ -757,7 +757,7 @@ header label {
 .post-content h2::before {
   content: "#";
   margin-right: 5px;
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-content h2::before {
   color: #eee;
@@ -765,7 +765,7 @@ header label {
 .post-content h3::before {
   content: "|";
   margin-right: 5px;
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-content h3::before {
   color: #eee;
@@ -773,19 +773,19 @@ header label {
 .post-content h4::before {
   content: "*";
   margin-right: 5px;
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-content h4::before {
   color: #eee;
 }
 .post-content a {
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-content a {
   color: #eee;
 }
 .post-content a:hover {
-  color: #73b886;
+  color: #ef3982;
 }
 .dark-theme .post-content a:hover:hover {
   color: #fff;
@@ -846,7 +846,7 @@ header label {
   border-spacing: 0;
 }
 .post-content table thead {
-  background: #d5eadb;
+  background: #bce1ef;
 }
 .dark-theme .post-content table thead {
   background: #626262;
@@ -854,7 +854,7 @@ header label {
 .post-content table th,
 .post-content table td {
   padding: 5px 15px;
-  border: 0.5px solid #808080;
+  border: 0.5px solid #e8e8e8;
 }
 .post-content .image-caption:not(:empty) {
   min-width: 20%;
@@ -894,8 +894,8 @@ header label {
   padding: 1em 1.2em 1em 1.2em;
   position: relative;
   color: rgba(52,73,94,0.8);
-  background-color: #f1f8f3;
-  border-left: 4px solid #73b886;
+  background-color: #e9f5fa;
+  border-left: 2px solid #2d96bd;
 }
 .post-content blockquote p {
   margin: 0;
@@ -923,17 +923,17 @@ header label {
 }
 .post-copyright {
   margin-top: 5rem;
-  border-top: 1px solid #808080;
-  border-bottom: 1px solid #808080;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 .post-copyright a {
-  color: #73b886;
+  color: #2d96bd;
 }
 .dark-theme .post-copyright a {
   color: #eee;
 }
 .post-copyright a:hover {
-  color: #73b886;
+  color: #ef3982;
 }
 .dark-theme .post-copyright a:hover {
   color: #fff;
@@ -1097,7 +1097,7 @@ header label {
   background-color: #fff;
 }
 .post-toc .is-active-link::before {
-  background-color: #73b886;
+  background-color: #2d96bd;
 }
 .post-toc .tocbot-list-menu {
   margin: 1rem 0.75rem;
