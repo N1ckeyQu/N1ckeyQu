@@ -205,7 +205,7 @@
 
         <div class="post-content">
             <h1 id="admin模块的拆分逻辑"><a href="#admin模块的拆分逻辑" class="headerlink" title="admin模块的拆分逻辑"></a>admin模块的拆分逻辑</h1><p>背景：目前三套系统的代码，都写在一个工程中，需进行系统拆分，为后续实现微服务做出铺垫</p>
-<h2 id="剥离原有工程"><a href="#剥离原有工程" class="headerlink" title="剥离原有工程"></a>剥离原有工程</h2><blockquote>
+<h2 id="剥离原有工程"><a href="#剥离原有工程" class="headerlink" title="剥离原有工程"></a>剥离原有工程</h2><h3 id="构想"><a href="#构想" class="headerlink" title="构想"></a>构想</h3><blockquote>
 <p>admin模块剥离出来后，形成一个多模块项目。项目模块如下:</p>
 <p>admin-api    存放controller层的内容、jsp页面和一些静态资源</p>
 <p>admin-service    存放service接口和serviceImpl</p>
@@ -221,6 +221,22 @@
 </li>
 </ol>
 <p><strong>剥离完成后，如果工程可以跑通，进行下一步</strong></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>经过2天的时间，admin工程成功的被剥离出来。剥离过程本身难度并不高，主要就是把一些相关的文件copy到新工程对应的模块下，以及一些命名规范和包名的修改</p>
+<h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><p>admin工程本身虽然技术栈已然落后于市场的主流，但是其业务体量、技术栈的数量都不是小数目，因此整个剥离过程中，主要有以下难点：</p>
+<ul>
+<li><p>不确定剥离业务的完成程度</p>
+<p>由于老工程中混杂了三套系统的代码，因此想要做到完美的admin工程剥离，需要删掉一些无用的业务代码。而删除业务代码的前提是，我们需要懂业务</p>
+</li>
+<li><p>admin工程剥离完成后，需要确认所有的开放API都可用</p>
+<p>很尴尬的是，admin工程当初是由一个人独立完成的，所以我们是没有测试用例的，一个都没有…</p>
+<p>经过我自己手动测试（点点点），地区推广中涉及到了一张被删除的表，以及几个NPE，算是初步完成了测试</p>
+</li>
+</ul>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>针对以上难点，解决方案如下：</p>
+<ul>
+<li>开始着手梳理业务流程，从mapper层倒推controller层，判断哪些业务代码是无用的。每删除一段业务代码，需要手动测试这一块的对应功能（没什么难度，是个细活）</li>
+<li>业务梳理完成后，进行一次完整的测试（不包括性能测试）</li>
+</ul>
 <h2 id="升级spring-boot"><a href="#升级spring-boot" class="headerlink" title="升级spring boot"></a>升级spring boot</h2>
         </div>
 
