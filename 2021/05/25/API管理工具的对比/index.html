@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="N1ckeyQu">
+
+
+    <meta name="subtitle" content="放下焦虑，安心生活">
+
+
+    <meta name="description" content="湖南工业大学19级，记录生活，聊点技术">
+
+
+    <meta name="keywords" content="后端,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,用户体验">
+
+
+<title>API管理工具的对比 | 曲颀的Blog</title>
+
+
+
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">曲颀的Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/aboutMe">about me</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">曲颀的Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 菜单</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/aboutMe">about me</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">全部展开</a>
+        <a onclick="go_top()">回到顶部</a>
+        <a onclick="go_bottom()">前往底部</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "全部折叠"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "全部展开"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">API管理工具的对比</h1>
+            
+                <div class="post-meta">
+                    
+                        作者: <a itemprop="author" rel="author" href="/">N1ckeyQu</a>
+                    
+
+                    
+                        <span class="post-time">
+                        日期: <a href="#">May 25, 2021&nbsp;&nbsp;14:31:34</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            
+    <div id="aplayer-zLhakqUq" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="420386017" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
+    ></div>
+
+<blockquote>
+<p>由于PC后台管理系统之前由一名工程师独立开发，因此项目文档几乎为0。随着用户数量的不断增加，DB层的压力也越来越大，用户数量也即将突破500万，预计到了年底用户数量会到达千万级，分库分表势在必行</p>
+<p>但分库分表的前提是先把业务理清楚，由于文档的缺失，很多业务逻辑就连项目的开发者本身都忘记了，因此重新梳理业务逻辑的第一步，就是引入一个好用的API管理工具</p>
+</blockquote>
+<h2 id="没有最好的，只有最合适的"><a href="#没有最好的，只有最合适的" class="headerlink" title="没有最好的，只有最合适的"></a>没有最好的，只有最合适的</h2><p>纵观目前市面上的API管理工具，最终遴选出：Knife4j、Apizza、YApi，这三者各有优劣，这里简单分析一下</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Knife4j</th>
+<th align="center">Apizza</th>
+<th align="center">YApi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">是否收费</td>
+<td align="center">❌</td>
+<td align="center">小型团队（2人或以下）免费（功能受限），更大型的团队需要收费（功能完整）</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td align="center">是否开源</td>
+<td align="center">✔</td>
+<td align="center">阉割版是开源的，收费的版本闭源</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="center">实现原理</td>
+<td align="center">在swagger基础上，提供了定制的web页面，更符合国人习惯</td>
+<td align="center">Apizza是一个独立的项目，专门用于API的管理，官方提供有偿的私有部署的服务</td>
+<td align="center">YApi是一个独立的项目，可单独部署在远程服务器，专门用于API的管理</td>
+</tr>
+<tr>
+<td align="center">文档地址</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://doc.xiaominfo.com/knife4j/documentation/">knife4j (xiaominfo.com)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://thoughts.teambition.com/sharespace/5f8eeff75ace8e0016e0ed99/docs/5fa372d6a46bf800471dc3e3">Apizza 帮助中心 (teambition.com)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://yapi.baidu.com/doc/documents/index.html">YApi-教程 (baidu.com)</a></td>
+</tr>
+</tbody></table>
+<p>上述表格是一个简单的横向对比，我们再来详细看看它们的优劣</p>
+<h2 id="Knife4j"><a href="#Knife4j" class="headerlink" title="Knife4j"></a>Knife4j</h2><p>在很早之前它其实不叫Knife4j，叫做swagger-bootstrap-ui，顾名思义，其实就是将swagger原生的页面进行了替换，更符合国人的阅读习惯</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>随着Knife4j作者不断的更新迭代，Knife4j也越来越强大，不仅仅是基于swagger，它还在swagger的基础上做了一系列的增强，包括但不限于：</p>
+<ul>
+<li><p><strong>i18n国际化</strong>：接口文档支持中英文</p>
+</li>
+<li><p><strong>访问页面加权控制</strong>：外部人员不知道用户名和密码，无法查看接口文档的web页面</p>
+</li>
+<li><p><strong>生产环境屏蔽资源</strong>：生产环境屏蔽所有swagger相关资源</p>
+</li>
+<li><p><strong>API全局搜索</strong></p>
+</li>
+<li><p><strong>支持接口mock</strong></p>
+</li>
+<li><p><strong>易于维护</strong>：凡是跟API文档有关的工作，维护必然是关键性的。假设我们有很多的API请求参数都用到了实体A，但梳理业务之后，我们发现实体A中的n个属性是没有必要传入的，将实体A中无用的n个属性删掉即可，接口文档会自动更新，不需要再去一个个的手动维护</p>
+</li>
+</ul>
+<p>等等一系列增强功能，作为一款不收费的开源软件，我觉得它的功能还是很强大的</p>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li><strong>侵入性强</strong>：Knife4j底层最终还是依赖的是swagger，它基于注解，因此对于我们接口本身具有很强的侵入性，如果我们想要预先生成请求报文，需要在请求报文对应的实体类上加入对应的注解，因此对实体类本身也有侵入</li>
+</ul>
+<h2 id="YApi"><a href="#YApi" class="headerlink" title="YApi"></a>YApi</h2><p>YApi是去哪儿的研发团队做出来的一款API管理工具，它跟swagger没有任何关系，因此它不会对我们的API造成入侵，而且它的权限做的比较到位，便于团队管理。和Knife4j相比，它更加重量级，因为它已经是一个<strong>单独的项目</strong>了，专门用于管理API</p>
+<h3 id="优势-1"><a href="#优势-1" class="headerlink" title="优势"></a>优势</h3><ul>
+<li><strong>完善的权限管理</strong></li>
+<li><strong>支持内网部署，部署流程简单</strong></li>
+<li><strong>代码侵入性为0</strong></li>
+<li><strong>支持高级mock</strong></li>
+</ul>
+<h3 id="劣势-1"><a href="#劣势-1" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li><strong>项目较重</strong>：体量相比于knife4j更重，由于是一个独立的项目，需要专门部署在内网中</li>
+<li><strong>学习成本略高</strong>：由于是一个单独的项目，且完成度很高，因此开发人员需要付出一定的时间去学习和适应</li>
+<li><strong>不易维护</strong>：假设我们有很多的API请求参数都用到了实体A，但梳理业务之后，我们发现实体A中的n个属性是没有必要传入的，将实体A中无用的n个属性删掉还不够，我们还需要去手动的修改YApi中涉及到实体A的API的请求报文</li>
+</ul>
+<h2 id="Apizza"><a href="#Apizza" class="headerlink" title="Apizza"></a>Apizza</h2><p>整体风格仿照Postman实现，易于上手，并且在生成接口文档方面进行了优化，<strong>可以在文档之间复用公共资源</strong>。一处定义，全局使用，同步更新，缺点是<strong>收费</strong></p>
+<h3 id="优势-2"><a href="#优势-2" class="headerlink" title="优势"></a>优势</h3><ul>
+<li><p>整体风格仿照Postman，学习成本低</p>
+</li>
+<li><p><strong>文档之间复用公共资源</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210526091858.png"/></li>
+</ul>
+<center style="font-size: 12px">模型定义</center>
+
+<img src="https://cdn.jsdelivr.net/gh/N1ckeyQu/picBed/img/v2-9a27d793aafe9f1c91bd2b645e384177_hd.gif"/>
+
+<center style="font-size: 12px">模型绑定</center>
+
+<p>假设我们有很多的API请求参数都用到了实体A，但梳理业务之后，我们发现实体A中的n个属性是没有必要传入的，将实体A中无用的n个属性删掉之后，再更新下Apizza中的模型A的定义就可以了，不需要再去修改一个个的API文档（前提是你的报文已经绑定了模型A）</p>
+<h3 id="劣势-2"><a href="#劣势-2" class="headerlink" title="劣势"></a>劣势</h3><p>收费</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>标签:</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">返回</a>
+                <span>· </span>
+                <a href="/">主页</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/05/26/%E5%88%9D%E8%AF%86MyCat/">初识MyCat</a>
+            
+            
+            <a class="next" rel="next" href="/2021/05/18/%E5%B7%A5%E7%A8%8B%E6%8B%86%E5%88%86%E5%92%8C%E6%8A%80%E6%9C%AF%E6%94%B9%E9%80%A0/">admin模块的拆分</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>N1ckeyQu © 2020 - 2021
+         | Powered by 
+            <a href="https://hexo.io" target="_blank">Hexo</a> & 
+            <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+        </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
