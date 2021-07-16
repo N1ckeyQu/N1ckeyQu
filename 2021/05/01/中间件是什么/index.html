@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
@@ -53,7 +54,26 @@
 <script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
 <script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
+
 <body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
     <div class="wrapper">
         <header>
     <nav class="navbar">
@@ -112,8 +132,8 @@
         }
     }
 </script>
-        <div class="main">
-            <div class="container">
+            <div class="main">
+                <div class="container">
     
     
         <div class="post-toc">
@@ -208,7 +228,7 @@
 
         <div class="post-content">
             
-    <div id="aplayer-UwkGJlXx" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-MNftDZaZ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1307822531" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
     ></div>
 
@@ -281,8 +301,8 @@
     </article>
 </div>
 
-        </div>
-        <footer id="footer" class="footer">
+            </div>
+            <footer id="footer" class="footer">
     <div class="copyright">
         <span>N1ckeyQu © 2020 - 2021
          | Powered by 
@@ -294,4 +314,5 @@
 
     </div>
 </body>
+
 </html>
