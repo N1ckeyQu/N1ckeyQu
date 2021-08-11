@@ -19,7 +19,7 @@
     <meta name="keywords" content="后端,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,用户体验">
 
 
-<title>曲颀的Blog</title>
+<title>放下面子 | 曲颀的Blog</title>
 
 
 
@@ -133,11 +133,73 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">全部展开</a>
+        <a onclick="go_top()">回到顶部</a>
+        <a onclick="go_bottom()">前往底部</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "全部折叠"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "全部展开"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title"></h1>
+            <h1 class="post-title">放下面子</h1>
             
                 <div class="post-meta">
                     
@@ -146,16 +208,31 @@
 
                     
                         <span class="post-time">
-                        日期: <a href="#">August 10, 2021&nbsp;&nbsp;1:01:10</a>
+                        日期: <a href="#">八月 10, 2021&nbsp;&nbsp;1:07:22</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    分类:
+                            
+                                <a href="/categories/%E6%97%A5%E8%AE%B0/">日记</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <p>入行快两年了，技术方面还是差了很多，想做点有意义的事，能力不够，咋办？干就完了</p>
+<h2 id="面子-VS-项目进度"><a href="#面子-VS-项目进度" class="headerlink" title="面子 VS 项目进度"></a>面子 VS 项目进度</h2><p>上午主要在看粤海水务那边将两个PCM文件合并成一个WAV文件的ffmpeg命令，方法是现成的，但是具体使用还有些问题，比如文件应该存放在哪里，以及删除多余的参数等</p>
+<p>下午阅读RPA需求，然后听产品讲需求，这次的RPA中控台还是跟AICC比较像，感觉真正有难度的地方还是creator和worker，我们中控台更多的是做权限管理和一些增删改查的操作。然后开始看哲如报过来的指令配置相关bug，这个需求我当时做的其实就有点懵，它允许你在指令配置中去配置一些变量，然后人机交互的过程中去由算法去获取到这个变量相关的值，我们拿到值以后，就可以在后续的对话中去使用</p>
+<blockquote>
+<p>比如AI问我，你是哪里人？我说我是杭州人，假如我们在指令配置中添加了${城市}这个变量，此时后台已经拿到了用户所在的地址，就可以应用在后续的对话里面</p>
+</blockquote>
+<p>这个功能还是挺复杂的，对于这种深层次的复杂逻辑我确实做的不好，当时很多地方都是孙哥指导我写的，我大概率无法独立完成这个功能。当时代码写晕了，忘记多轮对话这里也要加逻辑，才有了今天这个bug</p>
+<p>其实今天孙哥已经让我别管这个bug了，他来解决，但是我当时陷入了一种很奇怪的心态，我觉得当时这个功能是我负责的，我要负责到底。但是我尝试解决之后，发现并没有完全解决。当时应该果断去做粤海水务的，和面子相比，项目的进度要重要得多</p>
+
         </div>
 
         
@@ -164,6 +241,10 @@
                 <span>标签:</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E6%97%A5%E8%AE%B0/"># 日记</a>
+                    
+                        
                 </span>
             </div>
             <div>
